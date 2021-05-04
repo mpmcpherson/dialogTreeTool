@@ -5,7 +5,17 @@
 
 	</head>
 	<body>
-		
+		<div class="col-lg-1">
+		<?php
+		$cols=3;
+		$rows=3;
+		for($i=0;$i<$cols;$i++){
+			for($j=0;$j<$rows;$j++){
+				echo "<div id='$iBy$j' class='col-lg-$cols'></div>";
+			}	
+		}
+		?>
+		</div>
 	</body>
 </html>
 <script type="text/javascript" src="js\bootstrap.bundle.js"></script>
