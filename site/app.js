@@ -25,7 +25,7 @@ window.onload(function(){
 	let yPercent=myHeight/y;
 
 	for(let i=0;i<9;i++){
-		container.append('<div stlye=\"width='+xPercent+'; height='+yPercent+';\">'+i+'</div>');
+		container.append('<div style=\"width='+xPercent+'; height='+yPercent+'; display: inline-block;\"><h1>'+i+'</h1></div>');
 
 	}
 
