@@ -1,6 +1,6 @@
 window.onload(function(){
 
-	window.addEventListener('resize', function(event) {
+	window.addEventListener('resize', function() {
 
 
 		let elements = getElementsStartsWithId("GridElement");
@@ -13,11 +13,21 @@ window.onload(function(){
 
 	let container = document.getElementById("container");
 
-	container.width = window.innerWidth;
-	container.height=window.innerHeight;
+	let myWidth = window.innerWidth;
+	let myHeight = window.innerHeight;
 
-	container.append("<div></div>");
+	container.width = myWidth;
+	container.height = myHeight;
 	
+	let x = 3;
+	let y = 3;
+	let xPercent=myWidth/x;
+	let yPercent=myHeight/y;
+
+	for(let i=0;i<9;i++){
+		container.append('<div stlye=\"width='+xPercent+'; height='+yPercent+';\">'+i+'</div>');
+
+	}
 
 });
 
