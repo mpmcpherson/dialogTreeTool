@@ -32,4 +32,5 @@
 	</body>
 </html>
 
-<script type="text/javascript" src="js\app.js"></script>
+<script type="text/javascript" src="js\bootstrap.bundle.js"></script>
+<script type="text/javascript" src="app.js"></script>

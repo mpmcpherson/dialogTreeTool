@@ -1,4 +1,4 @@
-window.onload(function(){
+$(window).load(function(){
 
 	window.addEventListener('resize', function() {
 
