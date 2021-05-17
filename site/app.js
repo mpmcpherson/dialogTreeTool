@@ -14,8 +14,9 @@ window.onload(function(){
 	let container = document.getElementById("container");
 
 	container.width = window.innerWidth;
-
 	container.height=window.innerHeight;
+
+	container.append("<div></div>");
 	
 
 });
