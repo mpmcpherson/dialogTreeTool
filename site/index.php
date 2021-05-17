@@ -6,14 +6,15 @@
 
 	</head>
 	<body style="background-color: gray;">
-		<div class="" style="width: 100%; height: 100%;">
+		<div id="GridElement_container" style="width: 100%; height: 100%;">
 		<?php
-
+		/*
 		$cols=3;
 		$rows=3;
 		
 		$maxCol=100;
 		$colSum=round($maxCol/$cols,0);
+
 
 		$percentheight = 100;
 		$maxRow=round($percentheight/$rows,0);
@@ -25,6 +26,7 @@
 			}	
 			echo "</div>";
 		}
+		*/
 		?>
 		</div>
 	</body>
