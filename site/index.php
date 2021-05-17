@@ -1,8 +1,7 @@
-
 <html>
 	<head>
 		<link rel="stylesheet" href="css\style.css">
-		
+
 
 	</head>
 	<body style="background-color: gray;">
@@ -33,4 +32,5 @@
 </html>
 
 <script type="text/javascript" src="js\bootstrap.bundle.js"></script>
+<script type="text/javascript" src="js\jquery-3.6.0.js"></script>
 <script type="text/javascript" src="app.js"></script>

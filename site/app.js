@@ -1,31 +1,31 @@
-$(window).load(function(){
+$(document).ready(function(){
 
 	window.addEventListener('resize', function() {
 
 
 		let elements = getElementsStartsWithId("GridElement");
-
+		console.log(elements);
 		elements.foreach(resize);
 
 
 
 	}, true);
 
-	let container = document.getElementById("container");
+	let container = $("#GridElement_container");
 
-	let myWidth = window.innerWidth;
-	let myHeight = window.innerHeight;
+	let myWidth = $(window).width();
+	let myHeight = $(window).height();
 
 	container.width = myWidth;
 	container.height = myHeight;
 	
 	let x = 3;
 	let y = 3;
-	let xPercent=myWidth/x;
-	let yPercent=myHeight/y;
+	let xRatio=Math.round(myWidth/x);
+	let yRatio=Math.round(myHeight/y);
 
-	for(let i=0;i<9;i++){
-		container.append('<div style=\"width='+xPercent+'; height='+yPercent+'; display: inline-block;\"><h1>'+i+'</h1></div>');
+	for(let i=1;i<10;i++){
+		container.append("<div style='width: "+xRatio+"px; height: "+yRatio+"px; display: inline-flex;'><h1>"+i+"</h1></div>");
 
 	}
 
