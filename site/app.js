@@ -2,7 +2,7 @@ $(document).ready(function(){
 	window.addEventListener('resize', function() {
 		let elements = getElementsStartsWithId("GridElement");
 		console.log(elements);
-		elements.foreach(resize);
+		//elements.foreach(resize);
 	}, true);
 
 	let container = $("#GridElement_container");
@@ -19,8 +19,19 @@ $(document).ready(function(){
 	let yRatio=Math.round(myHeight/y);
 
 	for(let i=1;i<10;i++){
-		container.append("<div style='width: "+xRatio+"px; height: "+yRatio+"px; display: inline-flex; ondrop='drop(event)' ondragover='allowDrop(event)'><h1>"+i+"</h1></div>");
+		
+
+		container.append("<div id='_"+i+"' style='width: "+xRatio+"px; height: "+yRatio+"px; margin: -1%; display: inline-flex; ondrop='drop(event)' ondragover='allowDrop(event)'><h1>"+i+"</h1></div>");
 	}
+
+	let Box = $("#_1");
+	Box.append("<div id='dragMe' draggable=true ondrop=drop(event) style='display: inline-flex; margin: 3px; cursor: grabbing; border: 4px solid black; border-radius: 5px; height: 55px; width: 55px;'> YO </div>");
+	
+	$("#dragMe").on("dragstart",function(){
+		drag(event);
+	});
+
+
 });
 
 function resize(item, index, arr){
