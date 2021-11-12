@@ -5,6 +5,7 @@ $(document).ready(function(){
 		//elements.foreach(resize);
 	}, true);
 
+
 	let container = $("#GridElement_container");
 
 	let myWidth = $(window).width();
@@ -19,19 +20,14 @@ $(document).ready(function(){
 	let yRatio=Math.round(myHeight/y);
 
 	for(let i=1;i<10;i++){
-		
-
-		container.append("<div id='_"+i+"' style='width: "+xRatio+"px; height: "+yRatio+"px; margin: -1%; display: inline-flex; ondrop='drop(event)' ondragover='allowDrop(event)'><h1>"+i+"</h1></div>");
+		// <div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+		container.append('<div id="_'+i+'" class="droptarget" style="width: '+xRatio+'px; height: '+yRatio+'px; margin: -1%; display: inline-flex; ondrop="drop(event)" ondragover="allowDrop(event)"><h1>'+i+'</h1></div>');
 	}
 
+	//<p ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" id="dragtarget">Drag me!</p>
 	let Box = $("#_1");
-	Box.append("<div id='dragMe' draggable=true ondrop=drop(event) style='display: inline-flex; margin: 3px; cursor: grabbing; border: 4px solid black; border-radius: 5px; height: 55px; width: 55px;'> YO </div>");
+	Box.append('<div id="dragMe" ondragstart="dragStart(event)" draggable="true" style="display: inline-flex; margin: 3px; cursor: grabbing; border: 4px solid black; border-radius: 5px; height: 55px; width: 55px;"> YO </div>');
 	
-	$("#dragMe").on("dragstart",function(){
-		drag(event);
-	});
-
-
 });
 
 function resize(item, index, arr){
@@ -54,22 +50,25 @@ function getElementsStartsWithId( id ) {
   return elements;
 }
 
+/* Events fired on the drag target */
+document.addEventListener("dragstart", function(event) {
+  event.dataTransfer.setData("Text", event.target.id);
+});
 
-function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    var appDiv = document.getElementById(data);
-    ev.target.appendChild(appDiv);
+document.addEventListener("drag", function(event) {
+  //document.getElementById("demo").innerHTML = "The p element is being dragged";
+});
 
-    appDiv.style = "display: inline-flex; margin: 3px; cursor: grabbing; border-radius: 5px;";
-    
-    
-}
+/* Events fired on the drop target */
+document.addEventListener("dragover", function(event) {
+  event.preventDefault();
+});
 
-function allowDrop(ev) {
-  ev.preventDefault();
-}
-
-function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
-}
+document.addEventListener("drop", function(event) {
+  event.preventDefault();
+  if ( event.target.className == "droptarget" ) {
+    var data = event.dataTransfer.getData("Text");
+    event.target.appendChild(document.getElementById(data));
+    //document.getElementById("demo").innerHTML = "The p element was dropped";
+  }
+});
