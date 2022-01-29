@@ -1,0 +1,74 @@
+{
+	"name": "sampleDialog",
+	"conversation":
+	{
+		"conversationElements":
+		{
+			"id":"0",
+			"data": 
+			{
+				"parents":
+				{
+					"id":"-1"
+				},
+				"children":{
+					"id":"1",
+					"id":"2"
+
+				},
+				"value":"conversation element number 0"
+			},
+
+			"id":"1",
+			"data":
+			{
+				"parents":
+				{
+					"id":"1",
+					"id":"2"
+				},
+				"children":{
+					"id":"0",
+					"id":"2",
+				},
+				"value":"conversation element number 1"
+			},
+
+			"id":"2",
+			"data":
+			{
+				"parents":
+				{
+					"id":"0",
+					"id":"1",
+					"id":"3"
+				},
+				"children":{
+					"id":"0",
+					"id":"1",
+					"id":"3",
+				},
+				"value":"conversation element number 2"
+			},
+
+			"id":"3",
+			"data":
+			{
+				"parents":
+				{
+					"id":"0",
+					"id":"2",
+					"id":"3"
+				},
+				"children":{
+					"id":"3",
+					"id":"2",
+				},
+				"value":"conversation element number 3"
+			}
+		}
+
+	}
+
+	
+}
