@@ -16,12 +16,29 @@
 	class dialogTree{
 		public $conversation;
 		public $conversationElements;
-		public $dialogElements;
+
+		function __construct(string $convName, string $convElements ){
+			$this->conversation = "";
+			$this->conversationElements = [];
+		}
+
+		function addDialogElement(dialogElement $ele){
+			try{
+				$ele->_id = (end($this->conversationElements)->_id)+1;
+			}catch( exception $ex){
+				$ele->_id=0;
+			}
+			array_push($this->conversationElements, $ele);
+		}
 	}
 	class dialogElement{
-		public $id;
-		public $parents;
-		public $children;
+		public $_id;
+		public $_parents;
+		public $_children;
 		public $value;
+
+		function __construct(string $val){
+			$this->value = $val;
+		}
 	}
 ?>
