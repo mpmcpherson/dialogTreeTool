@@ -5,10 +5,27 @@
 		print_r("\nchoose an option\n");
 		$input = readline();
 
-		$dialogTree = file_get_contents("sampleDialog.json");
+		//$dialogTree = file_get_contents("sampleDialog.json");
+		$ndt = new dialogTree("firstTest");
+		
+		$inputDialog1 = new dialogElement("This is the first line of the conversation");
+		$ndt->addDialogElement($inputDialog1);
+		
+		print_r("first added\n");
 
-		#print_r($dialogTree);
-		var_dump($dialogTree);
+		$inputDialog2 = new dialogElement("This is the second line line of the conversation");
+		$ndt->addDialogElement($inputDialog2);
+
+		print_r("second added\n");
+		
+		$inputDialog3 = new dialogElement("This is the third line line of the conversation");
+		$ndt->addDialogElement($inputDialog3);
+
+		print_r("third added\n");
+		//print_r($ndt);
+		//var_dump($ndt);
+
+		$ndt->listNodes();
 
 	}
 
@@ -17,18 +34,21 @@
 		public $conversation;
 		public $conversationElements;
 
-		function __construct(string $convName, string $convElements ){
-			$this->conversation = "";
+		function __construct(string $convName){
+			$this->conversation = $convName;
 			$this->conversationElements = [];
 		}
 
 		function addDialogElement(dialogElement $ele){
-			try{
-				$ele->_id = (end($this->conversationElements)->_id)+1;
-			}catch( exception $ex){
-				$ele->_id=0;
+			if(end($this->conversationElements)!=false){
+
+				//var_dump(end($this->conversationElements));
+
+				$ele->_id  = end($this->conversationElements)[1]->_id+1;
+				array_push($this->conversationElements,[ $ele->_id, $ele ] );
+			}else{
+				array_push($this->conversationElements,[ $ele->_id, $ele ] );
 			}
-			array_push($this->conversationElements,[ $ele->_id, $ele ] );
 		}
 		function addParentChildRelationship(int $parentId, int $id){
 			$this->conversationElements[$parentId]->addChild($id);
@@ -38,6 +58,11 @@
 			$this->conversationElements[$parentId]->removeChild($id);
 			$this->conversationElements[$id]->removeParent($parentId);
 		}
+		function listNodes(){
+			foreach ($this->conversationElements as $key => $value) {
+				print_r("($value[1]->_id)".$value[1]->value."\n");
+			}
+		}
 	}
 	class dialogElement{
 		public $_id;
@@ -46,7 +71,11 @@
 		public $value;
 
 		function __construct(string $val){
+			$this->_id = 0;
+			$this->_parents=[];
+			$this->_children=[];
 			$this->value = $val;
+			//print_r($this);
 		}
 		function addParent($id){
 			array_push($this->_parents, $id);
