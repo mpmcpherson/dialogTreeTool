@@ -18,6 +18,7 @@
 	<body style="background-color: gray;">
 		<div id="GridElement_container" style="width: 100%; height: 100%;">
 		<?php
+
 		/*
 		$cols=3;
 		$rows=3;
@@ -37,6 +38,7 @@
 			echo "</div>";
 		}
 		*/
+
 		?>
 <!--
 		<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">

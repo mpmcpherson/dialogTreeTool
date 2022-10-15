@@ -7,28 +7,21 @@ $(document).ready(function(){
 
 
 	let container = $("#GridElement_container");
+	let layerId=1;
 
 	let myWidth = $(window).width();
 	let myHeight = $(window).height();
 
 	container.width = myWidth;
 	container.height = myHeight;
-	
-	let x = 3;
-	let y = 3;
-	let xRatio=Math.round(myWidth/x);
-	let yRatio=Math.round(myHeight/y);
 
-	for(let i=1;i<10;i++){
-		// <div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-		container.append('<div id="_'+i+'" class="droptarget" style="width: '+xRatio+'px; height: '+yRatio+'px; margin: -1%; display: inline-flex; ondrop="drop(event)" ondragover="allowDrop(event)"><h1>'+i+'</h1></div>');
-	}
+	let conversation = new Array();
 
-	//<p ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" id="dragtarget">Drag me!</p>
-	let Box = $("#_1");
-	Box.append('<div id="dragMe" ondragstart="dragStart(event)" draggable="true" style="display: inline-flex; margin: 3px; cursor: grabbing; border: 4px solid black; border-radius: 5px; height: 55px; width: 55px;"> YO </div>');
-	
-});
+	conversation.push(new conversationLayer(container));
+
+	conversationNodes = new Array();
+
+	conversationNodes.push(new conversationNode(conversation[0]));
 
 function resize(item, index, arr){
 	let height = document.body.clientHeight;
@@ -72,3 +65,13 @@ document.addEventListener("drop", function(event) {
     //document.getElementById("demo").innerHTML = "The p element was dropped";
   }
 });
+class conversationNode(targetLayer){
+	function create(){
+			targetLayer.append('<div id="dragMe" ondragstart="dragStart(event)" draggable="true" style="display: inline-flex; margin: 3px; cursor: grabbing; border: 4px solid black; border-radius: 5px; height: 55px; width: 55px;"> YO </div>');
+	}
+}
+class conversationLayer(targetContainer){
+	function create(){
+			targetContainer.append('<div id="_layer'+layerId+'" class="droptarget row" style="margin: -1%; display: inline-flex; ondrop="drop(event)" ondragover="allowDrop(event)"><h1>'+i+'</h1></div>');
+	}
+}
